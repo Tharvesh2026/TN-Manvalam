@@ -1,0 +1,6 @@
+{
+  "name": "Mannvalam - Tamil Nadu Soil Information Platform",
+  "description": "Modern soil information platform for Tamil Nadu featuring district and block soil exploration, nutrient distribution, and soil health guidelines in English and Tamil.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
