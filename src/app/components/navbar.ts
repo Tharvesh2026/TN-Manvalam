@@ -17,26 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
             (click)="soilService.setActiveTab('home')"
           >
             <div class="flex items-center gap-3">
-              <!-- Official Mannvalam Logo (English or Tamil based on language) -->
-              @if (soilService.language() === 'ta') {
-                <img
-                  src="https://www.tnagrisnet.tn.gov.in/mannvalam/assets/img/footer_tamil.svg"
-                  alt="மண்வளம் - தமிழ்நாடு மண் தகவல் தளம்"
-                  class="h-11 w-auto max-w-[200px] object-contain"
-                  referrerpolicy="no-referrer"
-                  (error)="handleLogoError($event)"
-                />
-              } @else {
-                <img
-                  src="https://www.tnagrisnet.tn.gov.in/mannvalam/assets/img/Group_english.svg"
-                  alt="Mannvalam - Tamil Nadu Soil Information Platform"
-                  class="h-11 w-auto max-w-[200px] object-contain"
-                  referrerpolicy="no-referrer"
-                  (error)="handleLogoError($event)"
-                />
-              }
-
-              <!-- Subtle prototype mark in display face -->
               <div class="hidden sm:flex flex-col border-l border-stone-200 pl-3">
                 <span class="text-xs uppercase tracking-wider font-semibold text-stone-500">
                   {{ soilService.language() === 'ta' ? 'தமிழ்நாடு அரசு முன்மாதிரி' : 'Tamil Nadu Soil Portal' }}
