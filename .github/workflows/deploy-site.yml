@@ -1,0 +1,63 @@
+name: Build and Deploy Angular App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout source code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Build Angular application
+      - name: Build Angular Application
+        run: npm run build -- --configuration production
+
+      # Find Angular build output
+      - name: Locate Build Output
+        id: build
+        run: |
+          if [ -f dist/browser/index.html ]; then
+            echo "path=dist/browser" >> $GITHUB_OUTPUT
+          elif [ -f dist/index.html ]; then
+            echo "path=dist" >> $GITHUB_OUTPUT
+          else
+            OUTPUT=$(find dist -name index.html -type f | head -n 1)
+
+            if [ -z "$OUTPUT" ]; then
+              echo "Angular build output not found!"
+              exit 1
+            fi
+
+            echo "path=$(dirname "$OUTPUT")" >> $GITHUB_OUTPUT
+          fi
+
+      # Deploy only build output to site branch
+      - name: Deploy to Site Branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: site
+          publish_dir: ${{ steps.build.outputs.path }}
+          force_orphan: true
+          commit_message: "Deploy Angular application"
