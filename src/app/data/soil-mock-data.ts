@@ -1332,14 +1332,14 @@ export const UI_TRANSLATIONS = {
     siteTitle: 'Mannvalam',
     siteSubtitle: 'Tamil Nadu Soil Information Platform',
     home: 'Home',
-    districts: 'District Explorer',
-    soilInfo: 'Soil Information',
-    about: 'About Mannvalam',
+    districts: 'Districts',
+    soilInfo: 'Soil Guide',
+    about: 'About',
     switchLanguage: 'தமிழ்',
     heroTitle: 'Understand Your Soil. Explore Tamil Nadu.',
     heroSubtitle: 'Explore soil characteristics, nutrient information, agricultural regions, and district-level soil data across Tamil Nadu.',
     exploreDistricts: 'Explore Districts',
-    exploreSoilInfo: 'Explore Soil Information',
+    exploreSoilInfo: 'Explore Soil Guide',
     stateOverviewTitle: 'Tamil Nadu Soil Distribution & Orders',
     stateOverviewDesc: 'Explore how different soil categories span the geographical landscape of Tamil Nadu, based on state agro-pedological survey records.',
     distributionChartTitle: 'Statewide Soil Distribution Breakdown',
@@ -1391,15 +1391,15 @@ export const UI_TRANSLATIONS = {
     primaryNutrientsTab: 'Primary (N-P-K)',
     propertiesTab: 'Soil Properties (pH, EC, OC)',
     micronutrientsTab: 'Micronutrients (Zn, Fe, B)',
-    apiDocs: 'Mannvalam API'
+    apiDocs: 'Developer APIs'
   },
   ta: {
     siteTitle: 'மண்வளம்',
     siteSubtitle: 'தமிழ்நாடு மண் தகவல் தளம்',
     home: 'முகப்பு',
     districts: 'மாவட்டங்கள்',
-    soilInfo: 'மண் தகவல் & சத்துக்கள்',
-    about: 'மண்வளம் பற்றி',
+    soilInfo: 'மண் வழிகாட்டி',
+    about: 'பற்றி',
     switchLanguage: 'English',
     heroTitle: 'உங்கள் மண்ணை அறிவோம். தமிழ்நாட்டை வளம் செய்வோம்.',
     heroSubtitle: 'தமிழ்நாட்டின் மண் பண்புகள், சத்து விவரங்கள், வேளாண் மண்டலங்கள் மற்றும் மாவட்ட அளவிலான மண் தகவல்களை எளிதாக ஆராயுங்கள்.',
@@ -1456,6 +1456,6 @@ export const UI_TRANSLATIONS = {
     primaryNutrientsTab: 'முதன்மை ஊட்டச்சத்துக்கள்',
     propertiesTab: 'மண் பண்புகள் (pH, EC, OC)',
     micronutrientsTab: 'நுண்ணூட்டச் சத்துக்கள்',
-    apiDocs: 'மண்வளம் ஏபிஐ'
+    apiDocs: 'டெவலப்பர் ஏபிஐ'
   }
 };

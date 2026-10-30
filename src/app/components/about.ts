@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { Soil } from '../services/soil';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -144,15 +144,23 @@ import { MatIconModule } from '@angular/material/icon';
           </p>
 
           <div class="pt-2 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              (click)="openPromoModal.emit()"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white transition-colors cursor-pointer shadow-xs"
+            >
+              <mat-icon class="!text-[15px] !w-4 !h-4 text-emerald-200">person</mat-icon>
+              <span>Meet Tharvesh (Interactive Portfolio)</span>
+            </button>
+
             <a
               href="https://about.imtharvesh.me"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border border-stone-300 bg-stone-50 hover:bg-stone-100 text-stone-800 transition-colors"
             >
-              <mat-icon class="!text-[15px] !w-4 !h-4 text-stone-500">person</mat-icon>
-              <span>About Me (about.imtharvesh.me)</span>
-              <mat-icon class="!text-[13px] !w-3.5 !h-3.5 text-stone-400">open_in_new</mat-icon>
+              <mat-icon class="!text-[15px] !w-4 !h-4 text-stone-500">open_in_new</mat-icon>
+              <span>about.imtharvesh.me</span>
             </a>
 
             <a
@@ -179,4 +187,5 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class About {
   readonly soilService = inject(Soil);
+  readonly openPromoModal = output<void>();
 }

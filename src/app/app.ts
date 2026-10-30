@@ -15,8 +15,8 @@ import { PromotionalModal } from './components/promotional-modal';
   imports: [Navbar, Home, DistrictExplorer, SoilInfo, About, Footer, ApiDocs, PromotionalModal],
   template: `
     <div class="min-h-screen flex flex-col bg-[#faf9f6] text-stone-900 selection:bg-emerald-100 selection:text-emerald-900">
-      <!-- Navbar with 3-Zone contract and developer actions -->
-      <app-navbar (openPromoModal)="isPromoModalOpen.set(true)" />
+      <!-- Navbar with 3-Zone geospatial contract -->
+      <app-navbar />
 
       <!-- Main Content Container according to Active Tab -->
       <main class="flex-1">
@@ -31,7 +31,7 @@ import { PromotionalModal } from './components/promotional-modal';
             <app-soil-info />
           }
           @case ('about') {
-            <app-about />
+            <app-about (openPromoModal)="isPromoModalOpen.set(true)" />
           }
           @case ('api-docs') {
             <app-api-docs />

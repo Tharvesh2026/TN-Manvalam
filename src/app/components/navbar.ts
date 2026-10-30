@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Soil } from '../services/soil';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,32 +7,42 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatIconModule],
   template: `
-    <header class="sticky top-0 z-50 bg-[#faf9f6]/95 backdrop-blur-md border-b border-stone-200">
+    <header class="sticky top-0 z-50 bg-[#faf9f6]/95 backdrop-blur-md border-b border-stone-200/90 shadow-2xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20 gap-4">
-          <!-- Zone 1: Official Brand Logo & Identity -->
+        <div class="flex items-center justify-between h-18 sm:h-20 gap-4">
+          <!-- Zone 1: Premium Geospatial Brand Identity -->
           <button
             type="button"
-            class="flex items-center gap-3 shrink-0 cursor-pointer text-left focus:outline-none"
+            class="flex items-center gap-3 shrink-0 cursor-pointer text-left focus:outline-none group"
             (click)="soilService.setActiveTab('home')"
+            aria-label="Mannvalam Home"
           >
-            <div class="flex items-center gap-3">
-              <div class="hidden sm:flex flex-col border-l border-stone-200 pl-3">
-                <span class="text-xs uppercase tracking-wider font-semibold text-stone-500">
-                  {{ soilService.language() === 'ta' ? 'தமிழ்நாடு அரசு முன்மாதிரி' : 'Tamil Nadu Soil Portal' }}
+            <!-- Geospatial Earth/Soil Emblem -->
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-950 text-white flex items-center justify-center shadow-xs border border-emerald-700/60 group-hover:from-emerald-700 group-hover:to-emerald-900 transition-all shrink-0">
+              <mat-icon class="!text-[22px] !w-5.5 !h-5.5 text-emerald-200">layers</mat-icon>
+            </div>
+
+            <!-- Brand Typography: Strong primary name, smaller secondary text -->
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-2">
+                <span class="text-base sm:text-lg font-black tracking-tight text-stone-900 group-hover:text-emerald-950 transition-colors">
+                  {{ soilService.language() === 'ta' ? 'மண்வளம்' : 'MANNVALAM' }}
                 </span>
-                <span class="text-[11px] text-stone-400">
-                  {{ soilService.language() === 'ta' ? 'மறுவடிவமைப்பு' : 'Modern Redesign' }}
+                <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-100/90 text-emerald-800 border border-emerald-200/80">
+                  TN GIS
                 </span>
               </div>
+              <span class="text-[11px] sm:text-xs text-stone-500 font-medium tracking-tight leading-tight">
+                {{ soilService.language() === 'ta' ? 'தமிழ்நாடு மண் தகவல் தளம்' : 'Tamil Nadu Soil Information Portal' }}
+              </span>
             </div>
           </button>
 
-          <!-- Zone 2: Navigation Links (Single Line) -->
-          <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+          <!-- Zone 2: Navigation Links (Single Line, High-End Feel) -->
+          <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-stone-600">
             <button
               (click)="soilService.setActiveTab('home')"
-              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer"
+              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer hover:text-stone-900"
               [class.text-emerald-800]="soilService.activeTab() === 'home'"
               [class.font-semibold]="soilService.activeTab() === 'home'"
               [class.text-stone-600]="soilService.activeTab() !== 'home'"
@@ -45,7 +55,7 @@ import { MatIconModule } from '@angular/material/icon';
 
             <button
               (click)="soilService.setActiveTab('districts')"
-              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer"
+              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer hover:text-stone-900"
               [class.text-emerald-800]="soilService.activeTab() === 'districts'"
               [class.font-semibold]="soilService.activeTab() === 'districts'"
               [class.text-stone-600]="soilService.activeTab() !== 'districts'"
@@ -58,7 +68,7 @@ import { MatIconModule } from '@angular/material/icon';
 
             <button
               (click)="soilService.setActiveTab('soil-info')"
-              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer"
+              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer hover:text-stone-900"
               [class.text-emerald-800]="soilService.activeTab() === 'soil-info'"
               [class.font-semibold]="soilService.activeTab() === 'soil-info'"
               [class.text-stone-600]="soilService.activeTab() !== 'soil-info'"
@@ -71,7 +81,7 @@ import { MatIconModule } from '@angular/material/icon';
 
             <button
               (click)="soilService.setActiveTab('about')"
-              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer"
+              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer hover:text-stone-900"
               [class.text-emerald-800]="soilService.activeTab() === 'about'"
               [class.font-semibold]="soilService.activeTab() === 'about'"
               [class.text-stone-600]="soilService.activeTab() !== 'about'"
@@ -84,12 +94,12 @@ import { MatIconModule } from '@angular/material/icon';
 
             <button
               (click)="soilService.setActiveTab('api-docs')"
-              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5"
+              class="relative py-2 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 hover:text-stone-900"
               [class.text-emerald-800]="soilService.activeTab() === 'api-docs'"
               [class.font-semibold]="soilService.activeTab() === 'api-docs'"
               [class.text-stone-600]="soilService.activeTab() !== 'api-docs'"
             >
-              <mat-icon class="!text-[16px] text-stone-400">code</mat-icon>
+              <mat-icon class="!text-[15px] text-stone-400">terminal</mat-icon>
               <span>{{ soilService.t().apiDocs }}</span>
               @if (soilService.activeTab() === 'api-docs') {
                 <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-700 rounded-full"></span>
@@ -97,39 +107,17 @@ import { MatIconModule } from '@angular/material/icon';
             </button>
           </nav>
 
-          <!-- Zone 3: Language Toggle & Actions -->
+          <!-- Zone 3: Language Switcher & Controls -->
           <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-            <!-- Dedicated Promotion Portal Launcher Button -->
-            <button
-              type="button"
-              (click)="openPromoModal.emit()"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
-              title="Open Creator Profile & Promotion Portal"
-            >
-              <mat-icon class="!text-[16px] !w-4 !h-4 text-emerald-700">person</mat-icon>
-              <span class="hidden sm:inline">Meet Tharvesh</span>
-              <span class="sm:hidden">Creator</span>
-            </button>
-
             <!-- Language Switcher Button -->
             <button
               type="button"
               (click)="soilService.toggleLanguage()"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-stone-400 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-stone-300/80 bg-white text-stone-700 hover:bg-stone-50 hover:border-stone-400 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
               [attr.aria-label]="soilService.language() === 'en' ? 'Switch to Tamil language' : 'ஆங்கில மொழிக்கு மாற்றுக'"
             >
-              <mat-icon class="text-stone-500 !text-[16px] !w-4 !h-4 leading-none">language</mat-icon>
+              <mat-icon class="text-stone-500 !text-[15px] !w-3.5 !h-3.5 leading-none">language</mat-icon>
               <span>{{ soilService.t().switchLanguage }}</span>
-            </button>
-
-            <!-- Primary Action Button -->
-            <button
-              type="button"
-              (click)="soilService.setActiveTab('districts')"
-              class="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-800 rounded-lg hover:bg-emerald-900 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
-            >
-              <mat-icon class="!text-[16px] !w-4 !h-4 leading-none">travel_explore</mat-icon>
-              <span>{{ soilService.t().exploreDistricts }}</span>
             </button>
 
             <!-- Mobile Hamburger Toggle -->
@@ -213,24 +201,7 @@ import { MatIconModule } from '@angular/material/icon';
             }
           </button>
 
-          <!-- Developer Promotion Portal in Mobile Menu -->
-          <div class="pt-3 border-t border-stone-200 space-y-2">
-            <button
-              (click)="openPromoFromMobile()"
-              class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center justify-between cursor-pointer transition-colors shadow-2xs"
-            >
-              <div class="flex items-center gap-2">
-                <mat-icon class="!text-[18px] text-emerald-700">person</mat-icon>
-                <div>
-                  <div class="font-bold">Meet Tharvesh (Developer Portal)</div>
-                  <div class="text-[11px] text-emerald-700 font-normal">Founder of TM Nexus · Portfolio & Info</div>
-                </div>
-              </div>
-              <mat-icon class="!text-[16px] text-emerald-600">arrow_forward</mat-icon>
-            </button>
-          </div>
-
-          <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
             <span class="text-xs text-stone-500 font-medium">
               {{ soilService.language() === 'ta' ? 'மொழி / Language' : 'Language / மொழி' }}
             </span>
@@ -249,34 +220,14 @@ import { MatIconModule } from '@angular/material/icon';
 export class Navbar {
   readonly soilService = inject(Soil);
   readonly isMobileMenuOpen = signal<boolean>(false);
-  readonly openPromoModal = output<void>();
 
   toggleMobileMenu() {
     this.isMobileMenuOpen.update((v) => !v);
-  }
-
-  openPromoFromMobile() {
-    this.isMobileMenuOpen.set(false);
-    this.openPromoModal.emit();
   }
 
   selectTabAndClose(tab: 'home' | 'districts' | 'soil-info' | 'about' | 'api-docs') {
     this.soilService.setActiveTab(tab);
     this.isMobileMenuOpen.set(false);
   }
-
-  handleLogoError(event: Event) {
-    const target = event.target as HTMLImageElement;
-    if (target) {
-      // In case network issue with external SVG, provide clean styled fallback
-      target.style.display = 'none';
-      const parent = target.parentElement;
-      if (parent && !parent.querySelector('.logo-fallback')) {
-        const fallback = document.createElement('div');
-        fallback.className = 'logo-fallback font-bold text-lg text-emerald-800 tracking-tight flex items-center gap-1.5';
-        fallback.innerHTML = `<span class="bg-emerald-800 text-white px-2 py-0.5 rounded text-sm font-extrabold">TN</span> <span>${this.soilService.language() === 'ta' ? 'மண்வளம்' : 'Mannvalam'}</span>`;
-        parent.prepend(fallback);
-      }
-    }
-  }
 }
+
