@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { Soil } from '../services/soil';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -117,8 +117,42 @@ import { MatIconModule } from '@angular/material/icon';
             </button>
           </nav>
 
-          <!-- Zone 3: Language Toggle & Primary Action -->
-          <div class="flex items-center gap-3 shrink-0">
+          <!-- Zone 3: Language Toggle & Primary Actions -->
+          <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            <!-- Promotional Popup Launcher Button -->
+            <button
+              type="button"
+              (click)="openPromoModal.emit()"
+              class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
+              title="View Developer Portfolio Popup"
+            >
+              <mat-icon class="!text-[15px] !w-3.5 !h-3.5">person</mat-icon>
+              <span>Meet Tharvesh</span>
+            </button>
+
+            <!-- About Me Link (about.imtharvesh.me, target=_blank) - Outline Style -->
+            <a
+              href="https://about.imtharvesh.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-stone-400 transition-colors shadow-2xs whitespace-nowrap"
+              title="About Tharvesh Muhaideen A"
+            >
+              <span>About Me</span>
+              <mat-icon class="!text-[14px] !w-3.5 !h-3.5 text-stone-400">open_in_new</mat-icon>
+            </a>
+
+            <!-- Buy Me a Coffee Link - Solid Style -->
+            <a
+              href="https://buymeacoffee.com/tharveshmuhaideen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-400 hover:bg-amber-500 text-stone-900 shadow-2xs transition-colors whitespace-nowrap"
+              title="Support on Buy Me a Coffee"
+            >
+              <span>☕ Buy Coffee</span>
+            </a>
+
             <!-- Language Switcher Button -->
             <button
               type="button"
@@ -134,7 +168,7 @@ import { MatIconModule } from '@angular/material/icon';
             <button
               type="button"
               (click)="soilService.setActiveTab('districts')"
-              class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-emerald-800 rounded-lg hover:bg-emerald-900 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
+              class="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-800 rounded-lg hover:bg-emerald-900 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
             >
               <mat-icon class="!text-[16px] !w-4 !h-4 leading-none">travel_explore</mat-icon>
               <span>{{ soilService.t().exploreDistricts }}</span>
@@ -221,6 +255,42 @@ import { MatIconModule } from '@angular/material/icon';
             }
           </button>
 
+          <!-- Developer Actions in Mobile Menu -->
+          <div class="pt-3 border-t border-stone-200 space-y-2">
+            <button
+              (click)="openPromoFromMobile()"
+              class="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-900 border border-emerald-200 flex items-center justify-between"
+            >
+              <span>Developer Profile (Popup)</span>
+              <mat-icon class="!text-[16px]">person</mat-icon>
+            </button>
+
+            <a
+              href="https://about.imtharvesh.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full block px-3 py-2 rounded-lg text-xs font-semibold bg-stone-100 text-stone-800 border border-stone-200"
+            >
+              <span>About Me: about.imtharvesh.me</span>
+            </a>
+
+            <a
+              href="https://buymeacoffee.com/tharveshmuhaideen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full block px-3 py-2 rounded-lg text-xs font-semibold bg-amber-400 text-stone-900 text-center"
+            >
+              <span>☕ Buy me a coffee</span>
+            </a>
+
+            <div class="px-3 pt-1 text-[11px] text-stone-500 flex items-center justify-between">
+              <span>Contact Developer:</span>
+              <a href="mailto:imtharvesh@gmail.com" class="font-semibold text-emerald-800 hover:underline">
+                imtharvesh&#64;gmail.com
+              </a>
+            </div>
+          </div>
+
           <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
             <span class="text-xs text-stone-500 font-medium">
               {{ soilService.language() === 'ta' ? 'மொழி / Language' : 'Language / மொழி' }}
@@ -240,9 +310,15 @@ import { MatIconModule } from '@angular/material/icon';
 export class Navbar {
   readonly soilService = inject(Soil);
   readonly isMobileMenuOpen = signal<boolean>(false);
+  readonly openPromoModal = output<void>();
 
   toggleMobileMenu() {
     this.isMobileMenuOpen.update((v) => !v);
+  }
+
+  openPromoFromMobile() {
+    this.isMobileMenuOpen.set(false);
+    this.openPromoModal.emit();
   }
 
   selectTabAndClose(tab: 'home' | 'districts' | 'soil-info' | 'about' | 'api-docs') {

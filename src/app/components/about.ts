@@ -129,6 +129,50 @@ import { MatIconModule } from '@angular/material/icon';
             </div>
           </div>
         </section>
+
+        <!-- 6. Developer & Project Information -->
+        <section class="p-6 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-4">
+          <div class="flex items-center gap-2 text-stone-900 font-bold text-lg">
+            <mat-icon class="text-emerald-800 !text-[22px]">code</mat-icon>
+            <span>Developer & Engineering Architecture</span>
+          </div>
+
+          <p class="text-sm text-stone-600 leading-relaxed">
+            This platform and its accompanying serverless REST API were conceptualized, architected, and engineered by
+            <strong>Tharvesh Muhaideen A</strong>, Founder of <strong>TM Nexus</strong> and Creator of <strong>tharvbytes</strong>.
+            The goal is to modernize Tamil Nadu's agricultural intelligence and provide open, structured access to soil data.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a
+              href="https://about.imtharvesh.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border border-stone-300 bg-stone-50 hover:bg-stone-100 text-stone-800 transition-colors"
+            >
+              <mat-icon class="!text-[15px] !w-4 !h-4 text-stone-500">person</mat-icon>
+              <span>About Me (about.imtharvesh.me)</span>
+              <mat-icon class="!text-[13px] !w-3.5 !h-3.5 text-stone-400">open_in_new</mat-icon>
+            </a>
+
+            <a
+              href="https://buymeacoffee.com/tharveshmuhaideen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg bg-amber-400 hover:bg-amber-500 text-stone-900 transition-colors"
+            >
+              <span>☕ Buy me a coffee</span>
+            </a>
+
+            <a
+              href="mailto:imtharvesh@gmail.com"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg text-emerald-800 hover:bg-emerald-50 transition-colors"
+            >
+              <mat-icon class="!text-[15px] !w-4 !h-4">mail</mat-icon>
+              <span>Contact: imtharvesh&#64;gmail.com</span>
+            </a>
+          </div>
+        </section>
       </div>
     </div>
   `
